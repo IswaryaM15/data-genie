@@ -1,1 +1,7 @@
 project_id = "rafiehwvokfvkqgcskfx"
+
+[functions.generate-dataset]
+verify_jwt = false
+
+[functions.scrape-web-data]
+verify_jwt = false
