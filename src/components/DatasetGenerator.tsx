@@ -397,12 +397,6 @@ const DatasetGenerator = () => {
               <>
                 <h3 className="font-semibold text-sm uppercase tracking-wider text-muted-foreground">Image Info</h3>
                 <div className="space-y-3 text-sm">
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/10">
-                    <Sparkles className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                    <p className="text-muted-foreground">
-                      Each image is a unique AI-generated variation based on your prompt and selected style.
-                    </p>
-                  </div>
                   <div className="flex items-start gap-3 p-3 rounded-lg bg-secondary">
                     <Image className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
                     <p className="text-muted-foreground">

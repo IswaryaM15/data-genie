@@ -46,9 +46,9 @@ const Hero = () => {
 
       <div className="relative z-10 container mx-auto px-6 text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-8 animate-fade-up">
+         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-8 animate-fade-up">
           <Sparkles className="w-3.5 h-3.5 text-accent" />
-          <span className="text-sm font-medium text-primary-foreground/80">AI-Powered Dataset Generation</span>
+          <span className="text-sm font-medium text-primary-foreground/80">Dataset Generation</span>
         </div>
 
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-primary-foreground leading-[1.1] mb-6 animate-fade-up" style={{ animationDelay: "0.1s" }}>
