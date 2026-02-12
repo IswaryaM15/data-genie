@@ -12,6 +12,7 @@ const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState("login");
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -67,7 +68,7 @@ const Auth = () => {
         </div>
 
         <div className="bg-card rounded-xl shadow-card border border-border/50 p-6">
-          <Tabs defaultValue="login">
+          <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-2 mb-6">
               <TabsTrigger value="login">Sign In</TabsTrigger>
               <TabsTrigger value="signup">Sign Up</TabsTrigger>
@@ -92,6 +93,12 @@ const Auth = () => {
                 <Button type="submit" className="w-full shadow-primary" disabled={loading}>
                   {loading ? "Signing in..." : "Sign In"}
                 </Button>
+                <p className="text-center text-sm text-muted-foreground mt-2">
+                  Don't have an account?{" "}
+                  <button type="button" onClick={() => setActiveTab("signup")} className="text-primary hover:underline font-medium">
+                    Create Account
+                  </button>
+                </p>
               </form>
             </TabsContent>
 
@@ -114,6 +121,12 @@ const Auth = () => {
                 <Button type="submit" className="w-full shadow-primary" disabled={loading}>
                   {loading ? "Creating account..." : "Create Account"}
                 </Button>
+                <p className="text-center text-sm text-muted-foreground mt-2">
+                  Already have an account?{" "}
+                  <button type="button" onClick={() => setActiveTab("login")} className="text-primary hover:underline font-medium">
+                    Sign In
+                  </button>
+                </p>
               </form>
             </TabsContent>
           </Tabs>
