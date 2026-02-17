@@ -68,7 +68,7 @@ const Hero = () => {
               Start Generating
             </a>
           </Button>
-          <Button size="lg" variant="outline" className="text-base px-8 border-primary-foreground/20 text-primary-foreground/80 hover:bg-primary-foreground/5" asChild>
+          <Button size="lg" variant="outline" className="text-base px-8 border-primary-foreground/50 text-primary-foreground bg-primary-foreground/10 hover:bg-primary-foreground/20" asChild>
             <Link to="/auth">
               <ArrowRight className="w-4 h-4 mr-2" />
               Create Account
