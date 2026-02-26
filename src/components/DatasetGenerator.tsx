@@ -433,9 +433,38 @@ const DatasetGenerator = () => {
               </Button>
             </div>
             <div className="bg-card border border-border/50 rounded-xl overflow-hidden shadow-card">
-              <pre className="p-5 text-sm font-mono overflow-auto max-h-[400px] text-foreground/80 whitespace-pre-wrap">
-                {result}
-              </pre>
+              {(format === "csv" || format === "xlsx") ? (
+                <div className="overflow-auto max-h-[400px]">
+                  <table className="w-full text-sm border-collapse">
+                    <thead className="sticky top-0 bg-muted z-10">
+                      {result.trim().split("\n").slice(0, 1).map((row, i) => (
+                        <tr key={i}>
+                          {row.split(",").map((cell, j) => (
+                            <th key={j} className="px-4 py-2.5 text-left font-semibold text-foreground border-b border-border whitespace-nowrap">
+                              {cell.replace(/^"|"$/g, "")}
+                            </th>
+                          ))}
+                        </tr>
+                      ))}
+                    </thead>
+                    <tbody>
+                      {result.trim().split("\n").slice(1).map((row, i) => (
+                        <tr key={i} className={i % 2 === 0 ? "bg-background" : "bg-muted/30"}>
+                          {row.split(",").map((cell, j) => (
+                            <td key={j} className="px-4 py-2 text-foreground/80 border-b border-border/30 whitespace-nowrap">
+                              {cell.replace(/^"|"$/g, "")}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <pre className="p-5 text-sm font-mono overflow-auto max-h-[400px] text-foreground/80 whitespace-pre-wrap">
+                  {result}
+                </pre>
+              )}
             </div>
           </div>
         )}
