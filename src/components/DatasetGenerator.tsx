@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import * as XLSX from "xlsx";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -21,7 +22,7 @@ const formats = [
   { value: "sql", label: "SQL", icon: DbIcon },
   { value: "xml", label: "XML", icon: FileCode },
   { value: "yaml", label: "YAML", icon: FileText },
-  { value: "tsv", label: "Excel (TSV)", icon: FileSpreadsheet },
+  { value: "xlsx", label: "Excel (XLSX)", icon: FileSpreadsheet },
   { value: "txt", label: "Plain Text", icon: FileText },
 ];
 
@@ -166,7 +167,13 @@ const DatasetGenerator = () => {
 
   const handleDownload = () => {
     if (!result) return;
-    const ext: Record<string, string> = { csv: ".csv", json: ".json", sql: ".sql", xml: ".xml", yaml: ".yaml", tsv: ".tsv", txt: ".txt" };
+    if (format === "xlsx") {
+      // Parse CSV result into XLSX
+      const wb = XLSX.read(result, { type: "string" });
+      XLSX.writeFile(wb, "dataset.xlsx");
+      return;
+    }
+    const ext: Record<string, string> = { csv: ".csv", json: ".json", sql: ".sql", xml: ".xml", yaml: ".yaml", txt: ".txt" };
     const blob = new Blob([result], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");

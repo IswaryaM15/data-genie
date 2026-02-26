@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/Navigation";
 import { Download, Trash2, ArrowLeft, FileJson, Table } from "lucide-react";
+import * as XLSX from "xlsx";
 
 interface Dataset {
   id: string;
@@ -17,7 +18,7 @@ interface Dataset {
 }
 
 const formatExtension: Record<string, string> = {
-  csv: ".csv", json: ".json", sql: ".sql", xml: ".xml", yaml: ".yaml", tsv: ".tsv", txt: ".txt",
+  csv: ".csv", json: ".json", sql: ".sql", xml: ".xml", yaml: ".yaml", txt: ".txt", xlsx: ".xlsx",
 };
 
 const History = () => {
@@ -61,6 +62,11 @@ const History = () => {
 
   const handleDownload = (dataset: Dataset) => {
     const content = typeof dataset.data === "string" ? dataset.data : JSON.stringify(dataset.data, null, 2);
+    if (dataset.format === "xlsx") {
+      const wb = XLSX.read(content, { type: "string" });
+      XLSX.writeFile(wb, "dataset.xlsx");
+      return;
+    }
     const blob = new Blob([content], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
