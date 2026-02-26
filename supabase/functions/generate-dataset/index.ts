@@ -19,7 +19,7 @@ serve(async (req) => {
       sql: "Return ONLY valid SQL INSERT statements for a table called 'data'. Include a CREATE TABLE statement first.",
       xml: "Return ONLY valid XML with a root <dataset> element containing <row> elements.",
       yaml: "Return ONLY valid YAML as a list of objects. No markdown, no code fences.",
-      tsv: "Return ONLY valid TSV (tab-separated values) with a header row.",
+      xlsx: "Return ONLY valid CSV with a header row. Use commas as delimiters. Quote fields containing commas. This will be converted to Excel format.",
       txt: "Return the data as readable plain text with consistent formatting.",
     };
 
